@@ -1,132 +1,658 @@
 {
   "version": "2.5.0",
   "summary": {
-    "title": "Modèle de risques cyber",
-    "owner": "Maxence",
-    "description": "Modélisation des risques cyber : Exploitation de vulnérabilités, scans réseau et phishing."
+    "title": "Modèle de Menaces - Infrastructure Web",
+    "owner": "Équipe Sécurité",
+    "description": "Analyse des menaces cyber : CVE, Scans réseau, Phishing",
+    "id": 0
   },
   "detail": {
     "contributors": [],
-    "diagramTop": "0",
-    "diagramLeft": "0",
-    "trustZones": [],
-    "diagram": {
-      "nodes": [
-        {
-          "id": "1",
-          "name": "Attaquant externe",
-          "type": "actor",
-          "description": "Acteur malveillant sur Internet."
-        },
-        {
-          "id": "2",
-          "name": "Pare-feu",
-          "type": "process",
-          "description": "Filtrage des connexions réseau entrantes."
-        },
-        {
-          "id": "3",
-          "name": "Serveur Web",
-          "type": "server",
-          "description": "Serveur exposé contenant l'application."
-        },
-        {
-          "id": "4",
-          "name": "Base de données",
-          "type": "database",
-          "description": "Stockage des données sensibles."
-        },
-        {
-          "id": "5",
-          "name": "Utilisateur",
-          "type": "actor",
-          "description": "Utilisateur légitime du système."
-        },
-        {
-          "id": "6",
-          "name": "Messagerie (Email)",
-          "type": "process",
-          "description": "Serveur de messagerie recevant les emails."
-        }
-      ],
-      "edges": [
-        {
-          "id": "e1",
-          "name": "Trafic réseau",
-          "source": "1",
-          "target": "2",
-          "description": "Connexion depuis Internet vers le pare-feu."
-        },
-        {
-          "id": "e2",
-          "name": "Requêtes HTTP/HTTPS",
-          "source": "2",
-          "target": "3",
-          "description": "Trafic filtré vers le serveur web."
-        },
-        {
-          "id": "e3",
-          "name": "Requêtes SQL",
-          "source": "3",
-          "target": "4",
-          "description": "Accès aux données de la base."
-        },
-        {
-          "id": "e4",
-          "name": "Emails reçus",
-          "source": "1",
-          "target": "6",
-          "description": "Emails envoyés par un attaquant."
-        },
-        {
-          "id": "e5",
-          "name": "Lecture d'emails",
-          "source": "6",
-          "target": "5",
-          "description": "L'utilisateur reçoit et lit l'email."
-        }
-      ]
-    },
-    "threats": [
+    "diagrams": [
       {
-        "id": "t1",
-        "title": "Exploitation de vulnérabilités (CVE/Zéro-day)",
-        "description": "L'attaquant exploite une faille logicielle ou une mauvaise configuration.",
-        "threatType": "Tampering",
-        "mitigations": [
-          "Mises à jour régulières",
-          "Scanner de vulnérabilités",
-          "Configuration sécurisée"
-        ],
-        "impact": "Confidentialité, Intégrité, Disponibilité",
-        "nodeId": "3"
-      },
-      {
-        "id": "t2",
-        "title": "Scan réseau et reconnaissance",
-        "description": "L'attaquant réalise un scan de port ou fingerprinting pour identifier des services vulnérables.",
-        "threatType": "Information Disclosure",
-        "mitigations": [
-          "Pare-feu configuré",
-          "IDS/IPS",
-          "Rate limiting & bannissement IP"
-        ],
-        "impact": "Confidentialité",
-        "nodeId": "2"
-      },
-      {
-        "id": "t3",
-        "title": "Phishing",
-        "description": "L'utilisateur reçoit un email malveillant contenant un lien ou pièce jointe piégée.",
-        "threatType": "Social Engineering",
-        "mitigations": [
-          "Formation utilisateurs",
-          "Filtrage d'emails",
-          "Authentification multifacteur (MFA)"
-        ],
-        "impact": "Confidentialité, Intégrité",
-        "nodeId": "5"
+        "id": 0,
+        "title": "Architecture Web - Vue d'ensemble",
+        "diagramType": "STRIDE",
+        "placeholder": "Diagramme principal",
+        "thumbnail": "./public/content/images/thumbnail.stride.jpg",
+        "version": "2.2.0",
+        "cells": [
+          {
+            "position": {
+              "x": 50,
+              "y": 50
+            },
+            "size": {
+              "width": 200,
+              "height": 100
+            },
+            "attrs": {
+              "text": {
+                "text": "Utilisateur Légitime"
+              },
+              "body": {
+                "stroke": "#2f9e44",
+                "strokeWidth": 2,
+                "fill": "#51cf66"
+              }
+            },
+            "visible": true,
+            "shape": "actor",
+            "zIndex": 1,
+            "id": "user-1",
+            "data": {
+              "type": "tm.Actor",
+              "name": "Utilisateur Légitime",
+              "description": "Utilisateur authentifié accédant à l'application",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "providesAuthentication": false,
+              "threats": []
+            }
+          },
+          {
+            "position": {
+              "x": 50,
+              "y": 200
+            },
+            "size": {
+              "width": 200,
+              "height": 100
+            },
+            "attrs": {
+              "text": {
+                "text": "Attaquant Externe"
+              },
+              "body": {
+                "stroke": "#c92a2a",
+                "strokeWidth": 3,
+                "fill": "#ff6b6b"
+              }
+            },
+            "visible": true,
+            "shape": "actor",
+            "zIndex": 2,
+            "id": "attacker-1",
+            "data": {
+              "type": "tm.Actor",
+              "name": "Attaquant Externe",
+              "description": "Acteur malveillant cherchant à compromettre le système",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "providesAuthentication": false,
+              "threats": []
+            }
+          },
+          {
+            "position": {
+              "x": 400,
+              "y": 120
+            },
+            "size": {
+              "width": 160,
+              "height": 80
+            },
+            "attrs": {
+              "text": {
+                "text": "WAF/Firewall"
+              },
+              "body": {
+                "stroke": "#1971c2",
+                "strokeWidth": 2,
+                "fill": "#4dabf7"
+              }
+            },
+            "visible": true,
+            "shape": "process",
+            "zIndex": 3,
+            "id": "waf-1",
+            "data": {
+              "type": "tm.Process",
+              "name": "WAF/Firewall",
+              "description": "Web Application Firewall filtrant le trafic entrant",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": true,
+              "privilegeLevel": "",
+              "threats": [
+                {
+                  "id": "threat-waf-1",
+                  "title": "MENACE 2: Reconnaissance et scans réseau",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Information disclosure",
+                  "description": "L'attaquant effectue des scans de ports et du fingerprinting pour identifier les services exposés et leurs versions. Cela permet de cartographier l'infrastructure avant une attaque ciblée.",
+                  "mitigation": "- Implémenter rate limiting sur le WAF\n- Déployer des systèmes IDS/IPS\n- Configurer des honeypots pour détecter les scans\n- Réduire la surface d'attaque (fermer ports inutiles)\n- Monitoring et alertes sur activités de scan",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 2,
+                  "score": ""
+                }
+              ]
+            }
+          },
+          {
+            "position": {
+              "x": 650,
+              "y": 120
+            },
+            "size": {
+              "width": 160,
+              "height": 80
+            },
+            "attrs": {
+              "text": {
+                "text": "Serveur Web"
+              },
+              "body": {
+                "stroke": "#f08c00",
+                "strokeWidth": 2,
+                "fill": "#ffd43b"
+              }
+            },
+            "visible": true,
+            "shape": "process",
+            "zIndex": 4,
+            "id": "webserver-1",
+            "data": {
+              "type": "tm.Process",
+              "name": "Serveur Web",
+              "description": "Serveur web Apache/Nginx hébergeant l'application",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": true,
+              "privilegeLevel": "",
+              "threats": [
+                {
+                  "id": "threat-web-1",
+                  "title": "MENACE 1: Exploitation de CVE - Serveur Web",
+                  "status": "Open",
+                  "severity": "Critical",
+                  "type": "Elevation of privilege",
+                  "description": "Exploitation de vulnérabilités connues (CVE) ou zero-day dans le serveur web (Apache/Nginx) permettant l'exécution de code à distance (RCE) ou l'élévation de privilèges.",
+                  "mitigation": "- Patch management automatisé et régulier\n- Vulnerability scanning hebdomadaire\n- Hardening de la configuration serveur\n- Principe du moindre privilège\n- Segmentation réseau\n- WAF avec règles à jour\n- Monitoring des comportements anormaux",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 1,
+                  "score": ""
+                }
+              ]
+            }
+          },
+          {
+            "position": {
+              "x": 900,
+              "y": 50
+            },
+            "size": {
+              "width": 160,
+              "height": 80
+            },
+            "attrs": {
+              "text": {
+                "text": "Serveur Application"
+              },
+              "body": {
+                "stroke": "#f08c00",
+                "strokeWidth": 2,
+                "fill": "#ffd43b"
+              }
+            },
+            "visible": true,
+            "shape": "process",
+            "zIndex": 5,
+            "id": "appserver-1",
+            "data": {
+              "type": "tm.Process",
+              "name": "Serveur Application",
+              "description": "Backend API traitant la logique métier",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": true,
+              "privilegeLevel": "",
+              "threats": [
+                {
+                  "id": "threat-app-1",
+                  "title": "MENACE 1: Exploitation CVE - Application",
+                  "status": "Open",
+                  "severity": "Critical",
+                  "type": "Tampering",
+                  "description": "Exploitation de vulnérabilités dans les frameworks ou bibliothèques utilisés (Log4Shell, Spring4Shell, etc.) permettant l'exécution de code ou la manipulation de données.",
+                  "mitigation": "- Gestion des dépendances avec SCA (Software Composition Analysis)\n- Mise à jour régulière des bibliothèques\n- RASP (Runtime Application Self-Protection)\n- Validation stricte des entrées\n- Sandboxing applicatif\n- Tests de sécurité (SAST/DAST)",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 3,
+                  "score": ""
+                }
+              ]
+            }
+          },
+          {
+            "position": {
+              "x": 900,
+              "y": 180
+            },
+            "size": {
+              "width": 160,
+              "height": 80
+            },
+            "attrs": {
+              "text": {
+                "text": "Base de Données"
+              },
+              "body": {
+                "stroke": "#fa5252",
+                "strokeWidth": 2,
+                "fill": "#ff8787"
+              }
+            },
+            "visible": true,
+            "shape": "store",
+            "zIndex": 6,
+            "id": "database-1",
+            "data": {
+              "type": "tm.Store",
+              "name": "Base de Données",
+              "description": "Base de données MySQL/PostgreSQL stockant les données métier",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": true,
+              "isALog": false,
+              "isEncrypted": true,
+              "isSigned": false,
+              "storesCredentials": true,
+              "storesInventory": false,
+              "threats": [
+                {
+                  "id": "threat-db-1",
+                  "title": "MENACE 1: Exploitation CVE - Injection SQL",
+                  "status": "Open",
+                  "severity": "Critical",
+                  "type": "Information disclosure",
+                  "description": "Exploitation de vulnérabilités d'injection SQL ou de mauvaises configurations permettant l'accès non autorisé aux données sensibles, leur modification ou leur suppression.",
+                  "mitigation": "- Utiliser des requêtes préparées (prepared statements)\n- ORM avec protection anti-injection\n- Principe du moindre privilège pour comptes DB\n- Chiffrement des données sensibles au repos\n- Audit logging des requêtes\n- WAF avec règles anti-SQLi\n- Scanning régulier des vulnérabilités DB",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 4,
+                  "score": ""
+                }
+              ]
+            }
+          },
+          {
+            "position": {
+              "x": 900,
+              "y": 310
+            },
+            "size": {
+              "width": 160,
+              "height": 80
+            },
+            "attrs": {
+              "text": {
+                "text": "Serveur Auth"
+              },
+              "body": {
+                "stroke": "#82c91e",
+                "strokeWidth": 2,
+                "fill": "#a9e34b"
+              }
+            },
+            "visible": true,
+            "shape": "process",
+            "zIndex": 7,
+            "id": "authserver-1",
+            "data": {
+              "type": "tm.Process",
+              "name": "Serveur d'Authentification",
+              "description": "Active Directory ou serveur LDAP gérant l'authentification",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": true,
+              "privilegeLevel": "",
+              "threats": [
+                {
+                  "id": "threat-auth-1",
+                  "title": "MENACE 3: Utilisation de credentials phishés",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Spoofing",
+                  "description": "Authentification réussie par un attaquant utilisant des identifiants volés via phishing (emails frauduleux, sites usurpés, etc.).",
+                  "mitigation": "- Authentification multi-facteurs (MFA) obligatoire\n- Formation de sensibilisation au phishing\n- Filtrage anti-phishing sur messagerie\n- DMARC, SPF, DKIM pour emails\n- Monitoring des connexions anormales\n- Politique de mots de passe robuste\n- Détection de connexions géolocalisées suspectes",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 5,
+                  "score": ""
+                }
+              ]
+            }
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "strokeWidth": 1,
+                "targetMarker": {
+                  "name": "block"
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "HTTPS Requests",
+              "description": "Requêtes HTTPS des utilisateurs",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": true,
+              "isBidirectional": false,
+              "isEncrypted": true,
+              "isPublicNetwork": true,
+              "protocol": "HTTPS",
+              "threats": [
+                {
+                  "id": "threat-flow-1",
+                  "title": "MENACE 3: Phishing - Interception utilisateur",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Spoofing",
+                  "description": "L'attaquant envoie des emails de phishing imitant l'application légitime pour voler les credentials des utilisateurs. Les victimes saisissent leurs identifiants sur un site frauduleux.",
+                  "mitigation": "- Programme de sensibilisation et formation continue\n- Simulation de phishing régulière\n- Filtres anti-phishing sur messagerie\n- Certificats SSL/TLS avec validation étendue\n- Notification des utilisateurs sur canaux officiels\n- Bouton de signalement d'emails suspects\n- MFA pour limiter l'impact des credentials volés",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 6,
+                  "score": ""
+                }
+              ]
+            },
+            "id": "flow-1",
+            "source": {
+              "cell": "user-1"
+            },
+            "target": {
+              "cell": "waf-1"
+            },
+            "labels": [
+              {
+                "position": 0.5,
+                "attrs": {
+                  "text": {
+                    "text": "HTTPS Requests",
+                    "fontWeight": "400",
+                    "fontSize": "small"
+                  }
+                }
+              }
+            ],
+            "vertices": []
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "strokeWidth": 1,
+                "targetMarker": {
+                  "name": "block"
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Scans & Reconnaissance",
+              "description": "Tentatives de scan et reconnaissance",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": true,
+              "protocol": "TCP/UDP",
+              "threats": []
+            },
+            "id": "flow-2",
+            "source": {
+              "cell": "attacker-1"
+            },
+            "target": {
+              "cell": "waf-1"
+            },
+            "labels": [
+              {
+                "position": 0.5,
+                "attrs": {
+                  "text": {
+                    "text": "Scans & Reconnaissance",
+                    "fontWeight": "400",
+                    "fontSize": "small"
+                  }
+                }
+              }
+            ],
+            "vertices": []
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "strokeWidth": 1,
+                "targetMarker": {
+                  "name": "block"
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Filtered Traffic",
+              "description": "Trafic filtré par le WAF",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": true,
+              "isPublicNetwork": false,
+              "protocol": "HTTPS",
+              "threats": []
+            },
+            "id": "flow-3",
+            "source": {
+              "cell": "waf-1"
+            },
+            "target": {
+              "cell": "webserver-1"
+            },
+            "labels": [
+              {
+                "position": 0.5,
+                "attrs": {
+                  "text": {
+                    "text": "Filtered Traffic",
+                    "fontWeight": "400",
+                    "fontSize": "small"
+                  }
+                }
+              }
+            ],
+            "vertices": []
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "strokeWidth": 1,
+                "targetMarker": {
+                  "name": "block"
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "API Calls",
+              "description": "Appels API vers le backend",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": true,
+              "isEncrypted": true,
+              "isPublicNetwork": false,
+              "protocol": "HTTPS/REST",
+              "threats": []
+            },
+            "id": "flow-4",
+            "source": {
+              "cell": "webserver-1"
+            },
+            "target": {
+              "cell": "appserver-1"
+            },
+            "labels": [
+              {
+                "position": 0.5,
+                "attrs": {
+                  "text": {
+                    "text": "API Calls",
+                    "fontWeight": "400",
+                    "fontSize": "small"
+                  }
+                }
+              }
+            ],
+            "vertices": []
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "strokeWidth": 1,
+                "targetMarker": {
+                  "name": "block"
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "SQL Queries",
+              "description": "Requêtes SQL vers la base de données",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": true,
+              "isEncrypted": true,
+              "isPublicNetwork": false,
+              "protocol": "TLS/SQL",
+              "threats": []
+            },
+            "id": "flow-5",
+            "source": {
+              "cell": "appserver-1"
+            },
+            "target": {
+              "cell": "database-1"
+            },
+            "labels": [
+              {
+                "position": 0.5,
+                "attrs": {
+                  "text": {
+                    "text": "SQL Queries",
+                    "fontWeight": "400",
+                    "fontSize": "small"
+                  }
+                }
+              }
+            ],
+            "vertices": []
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "strokeWidth": 1,
+                "targetMarker": {
+                  "name": "block"
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Auth Requests",
+              "description": "Requêtes d'authentification",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": true,
+              "isEncrypted": true,
+              "isPublicNetwork": false,
+              "protocol": "LDAPS",
+              "threats": []
+            },
+            "id": "flow-6",
+            "source": {
+              "cell": "appserver-1"
+            },
+            "target": {
+              "cell": "authserver-1"
+            },
+            "labels": [
+              {
+                "position": 0.5,
+                "attrs": {
+                  "text": {
+                    "text": "Auth Requests",
+                    "fontWeight": "400",
+                    "fontSize": "small"
+                  }
+                }
+              }
+            ],
+            "vertices": [
+              {
+                "x": 1100,
+                "y": 280
+              }
+            ]
+          }
+        ]
       }
-    ]
+    ],
+    "diagramTop": 0,
+    "reviewer": "",
+    "threatTop": 0
   }
 }
